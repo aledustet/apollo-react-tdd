@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, cleanup } from 'react-testing-library'
 import App from './App';
+import 'jest-dom/extend-expect'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// automatically unmount and cleanup DOM after the test is finished.
+afterEach(cleanup)
+
+it('renders the Hello Apollo Message', () => {
+  const { getByText } = render(<App />);
+  expect(getByText('Hello Apollo')).toBeDefined();
 });
