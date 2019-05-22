@@ -3,7 +3,7 @@ import { render, cleanup, waitForElement } from 'react-testing-library'
 import App from './App';
 import 'jest-dom/extend-expect'
 import { MockedProvider } from 'react-apollo/test-utils';
-import { errorMocks } from './query.mocks';
+import { errorMocks, countriesWithCubaQueryMock } from './query.mocks';
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup)
@@ -26,4 +26,17 @@ it('renders the error message when it fails', async () => {
   );
   const errorTextElement = await waitForElement(() => getByTestId('error'))
   expect(errorTextElement).toHaveTextContent(errorMessage);
+})
+
+
+it('renders the country and the continent name when the query returns a response', async () => {
+  const { getByText } = render(
+    <MockedProvider mocks={countriesWithCubaQueryMock} addTypename={false}>
+      <App />
+    </MockedProvider>
+  );
+  const countryNameElement = await waitForElement(() => getByText(`Cuba`))
+  const countryContinentElement = await waitForElement(() => getByText(`America`))
+  expect(countryNameElement).toBeDefined();
+  expect(countryContinentElement).toBeDefined();
 })
