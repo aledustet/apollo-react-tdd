@@ -1,12 +1,12 @@
 export type Continent = {
-  __typename: 'Continent',
+  __typename?: 'Continent',
   code: string,
   name: string,
-  countries: Country[],
+  countries?: Country[],
 };
 
 export type Country = {
-  __typename: 'Country',
+  __typename?: 'Country',
   code: string,
   name: string,
   native: string,

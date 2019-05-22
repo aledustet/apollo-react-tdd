@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import './App.css';
 import { CountriesQuery } from './query';
+import { CountryDetails } from './Country';
 
 const App: FunctionComponent = () => {
   return (
@@ -11,10 +12,7 @@ const App: FunctionComponent = () => {
         if(data && data.countries.length > 0) {
           return (
             data.countries.map((country) => {
-              return <div key={country.code}>
-                <h1>Name: <span>{country.name}</span></h1>
-                <p>Continent <span>{country.continent.name}</span></p>
-              </div>
+              return <CountryDetails key={country.code} country={country}/>
             })
           )
         }
