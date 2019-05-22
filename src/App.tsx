@@ -7,6 +7,7 @@ const App: FunctionComponent = () => {
     <CountriesQuery>
       {({ loading, error, data }) => {
         if (loading) return 'Loading...';
+        if (error) return <div data-testid={'error'}> {error.message}</div>;
       }}
     </CountriesQuery>
   );
