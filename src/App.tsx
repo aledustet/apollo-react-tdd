@@ -1,9 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import './App.css';
+import { CountriesQuery } from './query';
 
 const App: FunctionComponent = () => {
   return (
-    <h1>Hello Apollo</h1>
+    <CountriesQuery>
+      {({ loading, error, data }) => {
+        if (loading) return 'Loading...';
+      }}
+    </CountriesQuery>
   );
 }
 
